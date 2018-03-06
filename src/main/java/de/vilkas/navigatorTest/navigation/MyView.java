@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  */
 public enum MyView {
     LOGIN("login"),
-    DETAILS("details", Role.STUDENT);
+    TEACHER("teacher", Role.STUDENT);
 
     private String name;
     private Collection<Role> forbiddenRoles;
