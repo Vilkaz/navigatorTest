@@ -24,13 +24,14 @@ public class Login extends VerticalLayout implements View {
         name = new TextField("name");
         roles = new ComboBox<>();
         roles.setItems(Role.values());
+        roles.setEmptySelectionAllowed(false);
         Button okBtn = new Button("zum Lehrerbereich", e -> loginUser());
         addComponents(name, roles, okBtn);
     }
 
     private void loginUser() {
-        final VaadinSession current = VaadinSession.getCurrent();
-        current.setAttribute("user", new User(1l, name.getValue(),roles.getValue()));
+        final VaadinSession session = VaadinSession.getCurrent();
+        session.setAttribute("user", new User(1l, name.getValue(),roles.getValue()));
         Navigate.to(MyView.TEACHER);
     }
 }

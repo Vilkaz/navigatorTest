@@ -10,22 +10,29 @@ import java.util.stream.Collectors;
  * Created by Vilkas on 06/03/2018.
  */
 public enum MyView {
-    LOGIN("login"),
-    TEACHER("teacher", Role.STUDENT);
+    LOGIN("login", false, Role.values()),
+    TEACHER("teacher", true, Role.ADMIN, Role.TEACHER);
 
     private String name;
-    private Collection<Role> forbiddenRoles;
+    private Collection<Role> allowedRoles;
 
-    MyView(final String name, final Role... forbiddenRoles) {
+    MyView(final String name, final boolean closed, final Role... allowedRoles) {
         this.name = name;
-        this.forbiddenRoles = Arrays.stream(forbiddenRoles).collect(Collectors.toList());
+        this.closed = closed;
+        this.allowedRoles = Arrays.stream(allowedRoles).collect(Collectors.toList());
     }
+
+    private boolean closed;
 
     public String getName() {
         return name;
     }
 
-    public Collection<Role> getForbiddenRoles() {
-        return forbiddenRoles;
+    public boolean isClosed() {
+        return closed;
+    }
+
+    public Collection<Role> getAllowedRoles() {
+        return allowedRoles;
     }
 }

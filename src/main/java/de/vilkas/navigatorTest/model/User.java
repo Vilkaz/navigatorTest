@@ -49,8 +49,8 @@ public class User {
     }
 
     public boolean canNavigateTo(final MyView view) {
-        return !view
-                .getForbiddenRoles()
+        return view
+                .getAllowedRoles()
                 .stream()
                 .anyMatch(fr -> roles.contains(fr));
     }
